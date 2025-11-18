@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Restaurant Menu</title>
+  <style>
+    body { font-family: Arial; padding: 20px; background: #fafafa; }
+    button { margin: 8px; padding: 10px 20px; cursor: pointer; }
+    .veg { color: green; font-weight: bold; }
+    .item-box { border: 1px solid #ddd; padding: 10px; margin: 10px 0; background: #fff; border-radius: 6px; }
+  </style>
+</head>
+<body>
+
+  <h1>🍽️ Our Restaurant Menu</h1>
+  <p>Choose an option:</p>
+
+  <button onclick="loadMenu()">View Full Menu</button>
+  <button onclick="loadVeg()">View Vegetarian Options</button>
+  <button onclick="loadCategories()">View Categories</button>
+
+  <h2>Results:</h2>
+  <div id="output">Click a button to load data...</div>
+
+
+  <!-- 🔥 THE IMPORTANT PART — SCRIPT THAT MAKES BUTTONS WORK -->
+  <script>
+    function loadMenu() {
+      fetch("/menu")
+        .then(res => res.json())
+        .then(data => displayItems(data))
+        .catch(err => console.error(err));
+    }
+
+    function loadVeg() {
+      fetch("/menu/vegetarian")
+        .then(res => res.json())
+        .then(data => displayItems(data))
+        .catch(err => console.error(err));
+    }
+
+    function loadCategories() {
+      fetch("/menu/categories")
+        .then(res => res.json())
+        .then(data => displayCategories(data.categories))
+        .catch(err => console.error(err));
+    }
+
+    function displayItems(items) {
+      const output = document.getElementById("output");
+      output.innerHTML = "";
+
+      items.forEach(item => {
+        output.innerHTML += `
+          <div class="item-box">
+            <h3>${item.name} <span class="${item.isVegetarian ? "veg" : ""}">(${item.isVegetarian ? "VEG" : "NON-VEG"})</span></h3>
+            <p><b>Category:</b> ${item.category}</p>
+            <p><b>Price:</b> ₹${item.price}</p>
+            <p>${item.description}</p>
+          </div>
+        `;
+      });
+    }
+
+    function displayCategories(categories) {
+      const output = document.getElementById("output");
+      output.innerHTML = "<h3>Menu Categories</h3>";
+
+      categories.forEach(cat => {
+        output.innerHTML += `
+          <p><b>${cat.name}</b> — ${cat.itemCount} items</p>
+        `;
+      });
+    }
+  </script>
+
+</body>
+</html>
