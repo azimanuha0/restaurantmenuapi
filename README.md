@@ -78,7 +78,7 @@ Follow these steps to run the Restaurant Menu API on your local system:
 
 1. Clone the Repository
 git clone 
-https://github.com/azimanuha0/restaurantmenu.git
+https://github.com/azimanuha0/restaurantmenuapi.git
 
 2. Navigate to the Project Directory
 cd restaurant
@@ -101,13 +101,13 @@ Server running on  http://localhost:3000
 Open your browser and visit:
 
 Full Menu:
-http://localhost:3000/menu
+ http://localhost:3000/menu
 
 Vegetarian Menu:
-http://localhost:3000/menu/vegetarian
+ http://localhost:3000/menu/vegetarian
 
 Categories:
-http://localhost:3000/menu/categories
+ http://localhost:3000/menu/categories
 
 6. Access the Frontend Page
  http://localhost:3000
@@ -142,8 +142,7 @@ Features
 GitHub Repository
 
 🔗 Repository Link:
-https://github.com/azimanuha0/restaurantmenu.git
-
+https://github.com/azimanuha0/restaurantmenuapi.git
 
 ✅ 9. Author Information
 Author:
